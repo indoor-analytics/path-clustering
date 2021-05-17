@@ -1,6 +1,6 @@
 import {Feature, LineString} from "@turf/helpers";
-import DirectedGraph from "typescript-graph/dist/types/directedGraph";
 import {PointNode} from "../PointNode";
+import {DirectedGraph} from "typescript-graph";
 
 
 /**
