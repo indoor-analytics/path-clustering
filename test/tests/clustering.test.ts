@@ -1,5 +1,5 @@
 import {clusterPaths} from "../../src/clustering";
-import {flandersRuns} from "../features/runs";
+import {flandersRuns, mouaisRun} from "../features/runs";
 import { expect } from "chai";
 
 describe ('clustering', () => {
@@ -16,6 +16,12 @@ describe ('clustering', () => {
     it ('should throw with no input paths', () => {
         expect(
             () => clusterPaths([])
+        ).to.throw(RangeError, 'Input paths array must contain at least two paths.');
+    });
+
+    it ('should throw with one input path', () => {
+        expect(
+            () => clusterPaths([mouaisRun])
         ).to.throw(RangeError, 'Input paths array must contain at least two paths.');
     });
 });
