@@ -17,5 +17,10 @@ export function clusterPaths (
 
     const inputGraph: DirectedAcyclicGraph<PointNode> = pathsToGraph(paths);
 
-    return paths;
+    // TODO cluster/split steps
+
+    // TODO rebuild graph into paths
+
+    // TODO remove fake return
+    return [paths[0]];
 }
