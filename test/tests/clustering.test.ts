@@ -7,4 +7,9 @@ describe ('clustering', () => {
         const clusteredPaths = clusterPaths(flandersRuns);
         expect(clusteredPaths.length).to.not.equal(0);
     });
+
+    it ('should not return input paths', () => {
+        const clusteredPaths = clusterPaths(flandersRuns);
+        expect(clusteredPaths).to.not.deep.equal(flandersRuns);
+    });
 });
