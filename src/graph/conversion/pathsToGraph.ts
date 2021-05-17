@@ -1,6 +1,6 @@
 import {Feature, LineString, point} from "@turf/helpers";
 import {PointNode} from "../PointNode";
-import {DirectedGraph} from "typescript-graph";
+import {DirectedAcyclicGraph} from "typescript-graph";
 
 
 /**
@@ -10,8 +10,8 @@ import {DirectedGraph} from "typescript-graph";
  */
 export function pathsToGraph (
     paths: Feature<LineString>[]
-): DirectedGraph<PointNode> {
-    const graph = new DirectedGraph<PointNode>();
+): DirectedAcyclicGraph<PointNode> {
+    const graph = new DirectedAcyclicGraph<PointNode>();
 
     for (const path of paths) {
         const positions = JSON.parse(JSON.stringify(path.geometry.coordinates));
