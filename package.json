@@ -7,7 +7,7 @@
   "scripts": {
     "build": "npx tsc",
     "clean": "find . -regex '.*\\.\\(js\\|d.ts\\)' -not -path \"./node_modules/*\" -type f -delete",
-    "test": "npx ts-mocha test/tests/*.test.ts"
+    "test": "npx ts-mocha test/tests/**/*.test.ts"
   },
   "author": "Rémy Raes",
   "license": "ISC",
