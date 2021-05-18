@@ -6,7 +6,7 @@
   "types": "main.d.ts",
   "scripts": {
     "build": "npx tsc",
-    "clean": "find . -regex '.*\\.\\(js\\|d.ts\\)' -not -path \"./node_modules/*\" -type f -delete",
+    "clean": "find ./src -regex '.*\\.\\(js\\|d.ts\\)' -not -path \"./node_modules/*\" -type f -delete",
     "lint": "npx eslint . --ext .ts",
     "precommit-msg": "echo 'Running linter before committing to repository...' && exit 0",
     "test": "npx ts-mocha test/tests/**/*.test.ts"
