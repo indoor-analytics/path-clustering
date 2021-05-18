@@ -7,8 +7,12 @@ export class PointNode {
     public point: Feature<Point>;
 
     constructor (position: Position) {
-        this.hash = sha1(position);
+        this.hash = PointNode.getNodeHash(position);
         this.point = point(position);
+    }
+
+    static getNodeHash (position: Position): string {
+        return sha1(position);
     }
 }
 
