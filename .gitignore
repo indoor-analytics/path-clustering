@@ -3,3 +3,4 @@ test.geojson
 .idea
 *.js
 *.d.ts
+!.eslintrc.js
