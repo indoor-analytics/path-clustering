@@ -5,3 +5,7 @@
 .idea
 tsconfig.json
 test
+
+.eslintignore
+.eslintrc.js
+.github
