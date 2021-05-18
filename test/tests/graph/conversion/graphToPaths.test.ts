@@ -1,4 +1,4 @@
-import {PointNode} from "../../../../src/graph/PointNode";
+import {newPointNodeGraph, PointNode} from "../../../../src/graph/PointNode";
 import {expect} from "chai";
 import {graphToPaths} from "../../../../src/graph/conversion/graphToPaths";
 import {DirectedAcyclicGraph} from "typescript-graph";
@@ -9,7 +9,7 @@ import {point} from "@turf/helpers";
 function _getTestGraph (nodesCount: number, pathsCount: number): DirectedAcyclicGraph<PointNode> {
     if (nodesCount < 2) throw new Error();
 
-    const graph = new DirectedAcyclicGraph<PointNode>((node: PointNode) => node.hash);
+    const graph = newPointNodeGraph();
 
     for (let c=1; c<pathsCount+1; c++) {
         const index = 42 * c;
@@ -30,7 +30,7 @@ function _getTestGraph (nodesCount: number, pathsCount: number): DirectedAcyclic
 
 describe ('graphToPaths', () => {
     it ('should throw with graph having no nodes', () => {
-        const graph = new DirectedAcyclicGraph<PointNode>((node: PointNode) => node.hash);
+        const graph = newPointNodeGraph();
         expect(
             () => graphToPaths(graph)
         ).to.throw(Error, 'Input graph must feature nodes.');
@@ -43,7 +43,7 @@ describe ('graphToPaths', () => {
     });
 
     it ('should return one path linking input nodes together', () => {
-        const graph = new DirectedAcyclicGraph<PointNode>((node: PointNode) => node.hash);
+        const graph = newPointNodeGraph();
         const point1 = [0, 1],
             point2 = [1, 2],
             point3 = [2, 3];
