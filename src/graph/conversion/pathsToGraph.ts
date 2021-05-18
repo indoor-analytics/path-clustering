@@ -12,7 +12,7 @@ import {sha1} from "object-hash";
 export function pathsToGraph (
     paths: Feature<LineString>[]
 ): DirectedAcyclicGraph<PointNode> {
-    const graph = new DirectedAcyclicGraph<PointNode>();
+    const graph = new DirectedAcyclicGraph<PointNode>((node: PointNode) => node.hash);
 
     for (const path of paths) {
         const positions = JSON.parse(JSON.stringify(path.geometry.coordinates));
