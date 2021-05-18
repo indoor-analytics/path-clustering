@@ -2,6 +2,7 @@ import {Feature, LineString} from "@turf/helpers";
 import {PointNode} from "./graph/PointNode";
 import {pathsToGraph} from "./graph/conversion/pathsToGraph";
 import {DirectedAcyclicGraph} from "typescript-graph";
+import {graphToPaths} from "./graph/conversion/graphToPaths";
 
 
 /**
@@ -19,8 +20,5 @@ export function clusterPaths (
 
     // TODO cluster/split steps
 
-    // TODO rebuild graph into paths
-
-    // TODO remove fake return
-    return [paths[0]];
+    return graphToPaths(inputGraph);
 }
