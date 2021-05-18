@@ -11,5 +11,8 @@ import {DirectedAcyclicGraph} from "typescript-graph";
 export function graphToPaths (
     graph: DirectedAcyclicGraph<PointNode>
 ): Feature<LineString>[] {
+    if (graph.getNodes().length === 0)
+        throw new Error('Input graph must feature nodes.');
+
     return [];
 }
