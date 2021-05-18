@@ -1,7 +1,7 @@
 import {Feature, LineString, point} from "@turf/helpers";
 import {PointNode} from "../PointNode";
 import {DirectedAcyclicGraph} from "typescript-graph";
-const hash = require('object-hash');
+import {sha1} from "object-hash";
 
 
 /**
@@ -17,9 +17,9 @@ export function pathsToGraph (
     for (const path of paths) {
         const positions = JSON.parse(JSON.stringify(path.geometry.coordinates));
         const firstPosition = positions.shift()!;
-        let currentNode = graph.insert({point: point(firstPosition), hash: hash(firstPosition)});
+        let currentNode = graph.insert({point: point(firstPosition), hash: sha1(firstPosition)});
         for (const position of positions) {
-            const node = graph.insert({point: point(position), hash: hash(position)});
+            const node = graph.insert({point: point(position), hash: sha1(position)});
             graph.addEdge(currentNode, node);
             currentNode = node;
         }
