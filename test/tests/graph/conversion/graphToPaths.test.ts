@@ -2,8 +2,6 @@ import {newPointNodeGraph, PointNode} from "../../../../src/graph/PointNode";
 import {expect} from "chai";
 import {graphToPaths} from "../../../../src/graph/conversion/graphToPaths";
 import {DirectedAcyclicGraph} from "typescript-graph";
-import {sha1} from "object-hash";
-import {point} from "@turf/helpers";
 
 
 function _getTestGraph (nodesCount: number, pathsCount: number): DirectedAcyclicGraph<PointNode> {
@@ -14,11 +12,11 @@ function _getTestGraph (nodesCount: number, pathsCount: number): DirectedAcyclic
     for (let c=1; c<pathsCount+1; c++) {
         const index = 42 * c;
         const firstPosition = [index, index];
-        let currentNode = graph.insert({hash: sha1(firstPosition), point: point(firstPosition)});
+        let currentNode = graph.insert(new PointNode(firstPosition));
 
         for (let i=1; i<nodesCount+1; i++) {
             const currentPosition = [index+i, index+i];
-            let newNode = graph.insert({hash: sha1(currentPosition), point: point(currentPosition)});
+            let newNode = graph.insert(new PointNode(currentPosition));
             graph.addEdge(currentNode, newNode);
             currentNode = newNode;
         }
@@ -47,9 +45,9 @@ describe ('graphToPaths', () => {
         const point1 = [0, 1],
             point2 = [1, 2],
             point3 = [2, 3];
-        const node1 = graph.insert({hash: sha1(point1), point: point(point1)}),
-            node2 = graph.insert({hash: sha1(point2), point: point(point2)}),
-            node3 = graph.insert({hash: sha1(point3), point: point(point3)});
+        const node1 = graph.insert(new PointNode(point1)),
+            node2 = graph.insert(new PointNode(point2)),
+            node3 = graph.insert(new PointNode(point3));
         graph.addEdge(node1, node2);
         graph.addEdge(node2, node3);
 
