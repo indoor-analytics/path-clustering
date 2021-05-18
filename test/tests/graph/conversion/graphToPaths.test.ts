@@ -60,4 +60,10 @@ describe ('graphToPaths', () => {
         expect(pathCoordinates[1]).to.deep.equal(point2);
         expect(pathCoordinates[2]).to.deep.equal(point3);
     });
+
+    it ('should return three distinct paths', () => {
+        const graph = _getTestGraph(8, 3);
+        const paths = graphToPaths(graph);
+        expect(paths.length).to.equal(3);
+    })
 });
