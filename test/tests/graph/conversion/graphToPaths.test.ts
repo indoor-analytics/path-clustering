@@ -16,7 +16,7 @@ function _getTestGraph (nodesCount: number, pathsCount: number): DirectedAcyclic
 
         for (let i=1; i<nodesCount+1; i++) {
             const currentPosition = [index+i, index+i];
-            let newNode = graph.insert(new PointNode(currentPosition));
+            const newNode = graph.insert(new PointNode(currentPosition));
             graph.addEdge(currentNode, newNode);
             currentNode = newNode;
         }

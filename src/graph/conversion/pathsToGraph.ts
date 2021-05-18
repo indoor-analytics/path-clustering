@@ -15,7 +15,7 @@ export function pathsToGraph (
 
     for (const path of paths) {
         const positions = JSON.parse(JSON.stringify(path.geometry.coordinates));
-        const firstPosition = positions.shift()!;
+        const firstPosition = positions.shift();
         let currentNode = graph.insert(new PointNode(firstPosition));
         for (const position of positions) {
             const node = graph.insert(new PointNode(position));
