@@ -12,7 +12,10 @@
     "test": "npx ts-mocha test/tests/**/*.test.ts"
   },
   "precommit": {
-    "run": ["precommit-msg", "lint"],
+    "run": [
+      "precommit-msg",
+      "lint"
+    ],
     "silent": true
   },
   "author": "Rémy Raes",
@@ -20,7 +23,6 @@
   "devDependencies": {
     "@turf/helpers": "^6.3.0",
     "@types/chai": "^4.2.18",
-    "@types/expect": "^24.3.0",
     "@types/mocha": "^8.2.2",
     "@types/object-hash": "^2.1.0",
     "@typescript-eslint/eslint-plugin": "^4.24.0",
