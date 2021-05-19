@@ -1,8 +1,9 @@
-import {Feature, LineString} from "@turf/helpers";
+import {Feature, LineString, polygon} from "@turf/helpers";
 import {PointNode} from "./graph/PointNode";
 import {pathsToGraph} from "./graph/conversion/pathsToGraph";
 import {DirectedAcyclicGraph} from "typescript-graph";
 import {graphToPaths} from "./graph/conversion/graphToPaths";
+import {truncateGraph} from "./graph/truncate/truncateGraph";
 
 
 /**
@@ -17,8 +18,9 @@ export function clusterPaths (
         throw new RangeError('Input paths array must contain at least two paths.');
 
     const inputGraph: DirectedAcyclicGraph<PointNode> = pathsToGraph(paths);
+    const truncatedGraph = truncateGraph(inputGraph, polygon([]));
 
     // TODO cluster/split steps
 
-    return graphToPaths(inputGraph);
+    return graphToPaths(truncatedGraph);
 }
