@@ -1,29 +1,7 @@
 import {newPointNodeGraph, PointNode} from "../../../../src/graph/PointNode";
 import {expect} from "chai";
 import {graphToPaths} from "../../../../src/graph/conversion/graphToPaths";
-import {DirectedAcyclicGraph} from "typescript-graph";
-
-
-function _getTestGraph (nodesCount: number, pathsCount: number): DirectedAcyclicGraph<PointNode> {
-    if (nodesCount < 2) throw new Error();
-
-    const graph = newPointNodeGraph();
-
-    for (let c=1; c<pathsCount+1; c++) {
-        const index = 42 * c;
-        const firstPosition = [index, index];
-        let currentNode = graph.insert(new PointNode(firstPosition));
-
-        for (let i=1; i<nodesCount+1; i++) {
-            const currentPosition = [index+i, index+i];
-            const newNode = graph.insert(new PointNode(currentPosition));
-            graph.addEdge(currentNode, newNode);
-            currentNode = newNode;
-        }
-    }
-
-    return graph;
-}
+import {getTestGraph} from "../../../utils/getTestGraph";
 
 
 describe ('graphToPaths', () => {
@@ -35,7 +13,7 @@ describe ('graphToPaths', () => {
     });
 
     it ('should return one path', () => {
-        const graph = _getTestGraph(3, 1);
+        const graph = getTestGraph(3, 1);
         const paths = graphToPaths(graph);
         expect(paths.length).to.equal(1);
     });
@@ -62,7 +40,7 @@ describe ('graphToPaths', () => {
     });
 
     it ('should return three distinct paths', () => {
-        const graph = _getTestGraph(8, 3);
+        const graph = getTestGraph(8, 3);
         const paths = graphToPaths(graph);
         expect(paths.length).to.equal(3);
     })
