@@ -1,4 +1,4 @@
-import {Feature, LineString, Polygon, polygon} from "@turf/helpers";
+import {Feature, LineString, Polygon} from "@turf/helpers";
 import {PointNode} from "./graph/PointNode";
 import {pathsToGraph} from "./graph/conversion/pathsToGraph";
 import {DirectedAcyclicGraph} from "typescript-graph";

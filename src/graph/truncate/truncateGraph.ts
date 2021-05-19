@@ -1,5 +1,5 @@
 import {DirectedAcyclicGraph} from "typescript-graph";
-import {newPointNodeGraph, PointNode} from "../PointNode";
+import {PointNode} from "../PointNode";
 import {Feature, Polygon} from "@turf/helpers";
 
 /**
@@ -12,5 +12,6 @@ export function truncateGraph (
     graph: DirectedAcyclicGraph<PointNode>,
     zone: Feature<Polygon>
 ): DirectedAcyclicGraph<PointNode> {
-    return newPointNodeGraph();
+    console.log(zone);
+    return graph;
 }
