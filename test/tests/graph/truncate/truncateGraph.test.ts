@@ -1,5 +1,10 @@
 import {pathsToGraph} from "../../../../src/graph/conversion/pathsToGraph";
-import {flandersRuns, runEndingOutsideZone, runStartingOutsideZone} from "../../../features/runs";
+import {
+    flandersRuns,
+    runEndingOutsideZone,
+    runGoingOutsideThenInsideZone,
+    runStartingOutsideZone
+} from "../../../features/runs";
 import {truncateGraph} from "../../../../src/graph/truncate/truncateGraph";
 import {flandersStation} from "../../../features/zones";
 import { expect } from "chai";
@@ -36,7 +41,19 @@ describe ('truncateGraph', () => {
         expect(truncatedGraph.getNodes().length).to.equal(5);
     });
 
-    xit ('should truncate a graph with a path going outside, then inside zone');
+    // https://gist.github.com/Alystrasz/8cfc1fc58b9cd204911d0d7dea0875a6
+    it ('should truncate a graph with a path going outside, then inside zone', () => {
+        // TODO use this test with graphToPaths as well
+        const path = runGoingOutsideThenInsideZone();
+        expect(path.geometry.coordinates.length).to.equal(5);
+
+        const graph = pathsToGraph([path]);
+        const truncatedGraph = truncateGraph(graph, flandersStation());
+
+        // two path locations are outside zone
+        expect(truncatedGraph.getNodes().length).to.equal(3);
+    });
+
     xit ('should truncate a graph with a path both starting and ending outside zone');
     xit ('should truncate a graph with a path crossing zone border several times');
     xit ('should throw if entire graph is outside zone');
