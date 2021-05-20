@@ -1,4 +1,4 @@
-import {lineString} from "@turf/helpers";
+import {Feature, LineString, lineString} from "@turf/helpers";
 
 export const testRun = lineString([
     [
@@ -2430,4 +2430,4 @@ export const mouais3run = lineString([
 /**
  * Those are generated runs from indoor-analytics web application.
  */
-export const flandersRuns = [testRun, test3run, test3bisRun, test4run, mouaisRun, mouais2run, mouais3run];
+export const flandersRuns = (): Feature<LineString>[] => [testRun, test3run, test3bisRun, test4run, mouaisRun, mouais2run, mouais3run];
