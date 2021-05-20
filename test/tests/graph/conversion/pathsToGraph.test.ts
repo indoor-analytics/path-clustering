@@ -23,8 +23,8 @@ describe ('pathsToGraph', () => {
     });
 
     it ('should create a graph with several sub-graphs', () => {
-        const graph = pathsToGraph(flandersRuns);
-        for (const inputPath of flandersRuns) {
+        const graph = pathsToGraph(flandersRuns());
+        for (const inputPath of flandersRuns()) {
             const subGraph = graph.getSubGraphStartingFrom(PointNode.getNodeHash(inputPath.geometry.coordinates[0]));
             expect(subGraph.getNodes().length).to.deep.equal(inputPath.geometry.coordinates.length);
         }

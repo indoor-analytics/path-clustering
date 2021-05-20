@@ -5,12 +5,12 @@ import {flandersStation} from "../features/zones";
 
 describe ('clustering', () => {
     it ('should return some paths', () => {
-        const clusteredPaths = clusterPaths(flandersRuns, flandersStation());
+        const clusteredPaths = clusterPaths(flandersRuns(), flandersStation());
         expect(clusteredPaths.length).to.not.equal(0);
     });
 
     it ('should not return input paths', () => {
-        const clusteredPaths = clusterPaths(flandersRuns, flandersStation());
+        const clusteredPaths = clusterPaths(flandersRuns(), flandersStation());
         expect(clusteredPaths).to.not.deep.equal(flandersRuns);
     });
 
