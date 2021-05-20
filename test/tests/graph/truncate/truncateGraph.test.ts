@@ -1,6 +1,6 @@
 import {pathsToGraph} from "../../../../src/graph/conversion/pathsToGraph";
 import {
-    flandersRuns,
+    flandersRuns, runCrossingZoneBorderSeveralTimes,
     runEndingOutsideZone,
     runGoingOutsideThenInsideZone, runStartingAndEndingOutsideZone,
     runStartingOutsideZone
@@ -66,6 +66,17 @@ describe ('truncateGraph', () => {
         expect(truncatedGraph.getNodes().length).to.equal(4);
     });
 
-    xit ('should truncate a graph with a path crossing zone border several times');
+    // https://gist.github.com/Alystrasz/5e4368441709a8e46ac33dea3c94ffcc
+    it ('should truncate a graph with a path crossing zone border several times', () => {
+        const path = runCrossingZoneBorderSeveralTimes();
+        expect(path.geometry.coordinates.length).to.equal(12);
+
+        const graph = pathsToGraph([path]);
+        const truncatedGraph = truncateGraph(graph, flandersStation());
+
+        // six path locations are outside zone
+        expect(truncatedGraph.getNodes().length).to.equal(6);
+    });
+
     xit ('should throw if entire graph is outside zone');
 });
