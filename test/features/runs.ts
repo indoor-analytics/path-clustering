@@ -2431,3 +2431,39 @@ export const mouais3run = lineString([
  * Those are generated runs from indoor-analytics web application.
  */
 export const flandersRuns = (): Feature<LineString>[] => [testRun, test3run, test3bisRun, test4run, mouaisRun, mouais2run, mouais3run];
+
+
+export const runStartingOutsideZone = (): Feature<LineString> => lineString([
+    [
+        3.072996139526367,
+        50.634002069243124
+    ],
+    [
+        3.073446750640869,
+        50.63431509812812
+    ],
+    [
+        3.0730819702148433,
+        50.634757417998685
+    ],
+    [
+        3.073275089263916,
+        50.63541068280977
+    ],
+    [
+        3.0737364292144775,
+        50.63611157141718
+    ],
+    [
+        3.073811531066894,
+        50.636451804837144
+    ],
+    [
+        3.073596954345703,
+        50.63662192062354
+    ],
+    [
+        3.0737900733947754,
+        50.63677842660326
+    ]
+]);
