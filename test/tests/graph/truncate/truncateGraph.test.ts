@@ -6,7 +6,7 @@ import {
     runStartingOutsideZone
 } from "../../../features/runs";
 import {truncateGraph} from "../../../../src/graph/truncate/truncateGraph";
-import {flandersStation} from "../../../features/zones";
+import {citadel, flandersStation} from "../../../features/zones";
 import { expect } from "chai";
 
 describe ('truncateGraph', () => {
@@ -78,5 +78,10 @@ describe ('truncateGraph', () => {
         expect(truncatedGraph.getNodes().length).to.equal(6);
     });
 
-    xit ('should throw if entire graph is outside zone');
+    it ('should throw if entire graph is outside zone', () => {
+        const graph = pathsToGraph(flandersRuns());
+        expect(
+            () => truncateGraph(graph, citadel())
+        ).to.throw(RangeError, 'All graph nodes are located outside zone of interest.');
+    });
 });
