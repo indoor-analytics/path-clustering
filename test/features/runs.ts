@@ -2505,3 +2505,25 @@ export const runEndingOutsideZone = (): Feature<LineString> => lineString([
         50.637295573091066
     ]
 ]);
+export const runGoingOutsideThenInsideZone = (): Feature<LineString> => lineString([
+    [
+        3.071032762527466,
+        50.634655344551845
+    ],
+    [
+        3.0724596977233887,
+        50.63457368563476
+    ],
+    [
+        3.073049783706665,
+        50.634267463432266
+    ],
+    [
+        3.073629140853882,
+        50.634281073350294
+    ],
+    [
+        3.074197769165039,
+        50.634560075801446
+    ]
+]);
