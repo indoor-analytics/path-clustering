@@ -5,10 +5,12 @@ import {sha1} from "object-hash";
 export class PointNode {
     public hash: string;
     public point: Feature<Point>;
+    public insideZone: boolean;
 
     constructor (position: Position) {
         this.hash = PointNode.getNodeHash(position);
         this.point = point(position);
+        this.insideZone = true;
     }
 
     static getNodeHash (position: Position): string {
