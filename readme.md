@@ -22,3 +22,15 @@ import {clusterPaths} from '@indoor-analytics/path-clustering';
 
 ## Algorithm formalization
 
+* Convert all inputs path into a graph;
+* Truncate graph nodes regarding the provided zone of interest;
+* **cluster** or **split** graph at will;
+* Convert graph remaining nodes into paths.
+
+#### Cluster
+
+TODO
+
+#### Split
+
+TODO
