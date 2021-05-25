@@ -26,7 +26,7 @@ describe ('truncateGraph', () => {
         const truncatedGraph = truncateGraph(graph, flandersStation());
 
         // two path locations are outside zone
-        expect(truncatedGraph.getNodes().length).to.equal(6);
+        expect(truncatedGraph.getNodes().filter(node => node.insideZone).length).to.equal(6);
     });
 
     // https://gist.github.com/Alystrasz/fc97417fecd19369fdbaa94908cafd3a
@@ -38,7 +38,7 @@ describe ('truncateGraph', () => {
         const truncatedGraph = truncateGraph(graph, flandersStation());
 
         // four path locations are outside zone
-        expect(truncatedGraph.getNodes().length).to.equal(5);
+        expect(truncatedGraph.getNodes().filter(node => node.insideZone).length).to.equal(5);
     });
 
     // https://gist.github.com/Alystrasz/8cfc1fc58b9cd204911d0d7dea0875a6
@@ -51,7 +51,7 @@ describe ('truncateGraph', () => {
         const truncatedGraph = truncateGraph(graph, flandersStation());
 
         // two path locations are outside zone
-        expect(truncatedGraph.getNodes().length).to.equal(3);
+        expect(truncatedGraph.getNodes().filter(node => node.insideZone).length).to.equal(3);
     });
 
     // https://gist.github.com/Alystrasz/919f978c1f1e98de229660c57659278e
@@ -63,7 +63,7 @@ describe ('truncateGraph', () => {
         const truncatedGraph = truncateGraph(graph, flandersStation());
 
         // four path locations are outside zone
-        expect(truncatedGraph.getNodes().length).to.equal(4);
+        expect(truncatedGraph.getNodes().filter(node => node.insideZone).length).to.equal(4);
     });
 
     // https://gist.github.com/Alystrasz/5e4368441709a8e46ac33dea3c94ffcc
@@ -75,7 +75,7 @@ describe ('truncateGraph', () => {
         const truncatedGraph = truncateGraph(graph, flandersStation());
 
         // six path locations are outside zone
-        expect(truncatedGraph.getNodes().length).to.equal(6);
+        expect(truncatedGraph.getNodes().filter(node => node.insideZone).length).to.equal(6);
     });
 
     it ('should throw if entire graph is outside zone', () => {
