@@ -14,9 +14,16 @@ export function truncateGraph (
     zone: Feature<Polygon>
 ): DirectedAcyclicGraph<PointNode> {
 
+    let hasNodesInsideZone = false;
+
     for (const node of graph.getNodes()) {
-        node.insideZone = booleanPointInPolygon(node.point, zone);
+        const result = booleanPointInPolygon(node.point, zone);
+        node.insideZone = result;
+        hasNodesInsideZone = hasNodesInsideZone || result;
     }
+
+    if (!hasNodesInsideZone)
+        throw new RangeError('All graph nodes are located outside zone of interest.');
 
     return graph;
 }
