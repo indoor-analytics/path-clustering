@@ -63,7 +63,7 @@ describe ('truncateGraph', () => {
         const truncatedGraph = truncateGraph(graph, flandersStation());
 
         // four path locations are outside zone
-        expect(truncatedGraph.getNodes().filter(node => node.insideZone).length).to.equal(4);
+        expect(truncatedGraph.getNodes().filter(node => node.insideZone).length).to.equal(3);
     });
 
     // https://gist.github.com/Alystrasz/5e4368441709a8e46ac33dea3c94ffcc
