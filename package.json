@@ -35,6 +35,7 @@
     "typescript": "^4.2.4"
   },
   "dependencies": {
+    "@turf/boolean-point-in-polygon": "^6.3.0",
     "object-hash": "^2.1.1",
     "typescript-graph": "^0.2.1"
   }
