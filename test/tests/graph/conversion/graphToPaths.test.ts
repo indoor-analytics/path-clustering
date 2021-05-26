@@ -2,6 +2,10 @@ import {newPointNodeGraph, PointNode} from "../../../../src/graph/PointNode";
 import {expect} from "chai";
 import {graphToPaths} from "../../../../src/graph/conversion/graphToPaths";
 import {getTestGraph} from "../../../utils/getTestGraph";
+import {runGoingOutsideThenInsideZone} from "../../../features/runs";
+import {pathsToGraph} from "../../../../src/graph/conversion/pathsToGraph";
+import {truncateGraph} from "../../../../src/graph/truncate/truncateGraph";
+import {flandersStation} from "../../../features/zones";
 
 
 describe ('graphToPaths', () => {
@@ -43,5 +47,15 @@ describe ('graphToPaths', () => {
         const graph = getTestGraph(8, 3);
         const paths = graphToPaths(graph);
         expect(paths.length).to.equal(3);
-    })
+    });
+
+    // https://gist.github.com/Alystrasz/8cfc1fc58b9cd204911d0d7dea0875a6
+    it ('should return two paths (excluding nodes outside zone)', () => {
+        const path = runGoingOutsideThenInsideZone();
+        const graph = pathsToGraph([path]);
+        const truncatedGraph = truncateGraph(graph, flandersStation());
+
+        const paths = graphToPaths(truncatedGraph);
+        expect(paths.length).to.equal(2);
+    });
 });

@@ -43,7 +43,6 @@ describe ('truncateGraph', () => {
 
     // https://gist.github.com/Alystrasz/8cfc1fc58b9cd204911d0d7dea0875a6
     it ('should truncate a graph with a path going outside, then inside zone', () => {
-        // TODO use this test with graphToPaths as well
         const path = runGoingOutsideThenInsideZone();
         expect(path.geometry.coordinates.length).to.equal(5);
 
