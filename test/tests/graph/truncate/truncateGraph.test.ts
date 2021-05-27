@@ -83,4 +83,14 @@ describe ('truncateGraph', () => {
             () => truncateGraph(graph, citadel())
         ).to.throw(RangeError, 'All graph nodes are located outside zone of interest.');
     });
+
+    // https://gist.github.com/Alystrasz/919f978c1f1e98de229660c57659278e
+    it ('should add nodes where path enters/exits zone', () => {
+        const path = runStartingAndEndingOutsideZone();
+        const graph = pathsToGraph([path]);
+        const truncatedGraph = truncateGraph(graph, flandersStation());
+
+        // we expect 3 path locations + 2 intersection locations with zone edge
+        expect(truncatedGraph.getNodes().filter(node => node.insideZone).length).to.equal(5);
+    });
 });
