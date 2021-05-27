@@ -1,4 +1,4 @@
-import {Feature, lineString, LineString} from "@turf/helpers";
+import {Feature, lineString, LineString, Position} from "@turf/helpers";
 import {PointNode} from "../PointNode";
 import {DirectedAcyclicGraph} from "typescript-graph";
 
@@ -17,7 +17,24 @@ export function graphToPaths (
     const headNodes = graph.topologicallySortedNodes().filter((node) => graph.indegreeOfNode(node.hash) === 0);
     const pathGraphs = headNodes.map((headNode: PointNode) => graph.getSubGraphStartingFrom(headNode.hash));
 
-    return pathGraphs.map((graph) => {
-        return lineString(graph.topologicallySortedNodes().map(node => node.point.geometry.coordinates));
+    const paths: Feature<LineString>[] = [];
+
+    pathGraphs.map((graph) => {
+        const coordinates: Position[] = [];
+        for (const node of graph.topologicallySortedNodes()) {
+            if (node.insideZone)
+                coordinates.push(node.point.geometry.coordinates);
+            else {
+                if (coordinates.length > 1) {
+                    paths.push(lineString(coordinates));
+                    coordinates.length = 0;
+                }
+            }
+        }
+
+        if (coordinates.length > 1)
+            paths.push(lineString(coordinates));
     });
+
+    return paths;
 }

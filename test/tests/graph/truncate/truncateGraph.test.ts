@@ -44,13 +44,13 @@ describe ('truncateGraph', () => {
     // https://gist.github.com/Alystrasz/8cfc1fc58b9cd204911d0d7dea0875a6
     it ('should truncate a graph with a path going outside, then inside zone', () => {
         const path = runGoingOutsideThenInsideZone();
-        expect(path.geometry.coordinates.length).to.equal(5);
+        expect(path.geometry.coordinates.length).to.equal(6);
 
         const graph = pathsToGraph([path]);
         const truncatedGraph = truncateGraph(graph, flandersStation());
 
         // two path locations are outside zone
-        expect(truncatedGraph.getNodes().filter(node => node.insideZone).length).to.equal(3);
+        expect(truncatedGraph.getNodes().filter(node => node.insideZone).length).to.equal(4);
     });
 
     // https://gist.github.com/Alystrasz/919f978c1f1e98de229660c57659278e
