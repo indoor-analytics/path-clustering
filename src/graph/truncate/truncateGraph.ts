@@ -5,6 +5,7 @@ import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 
 /**
  * Eliminates all nodes outside the given zone of interest.
+ * Adds nodes on intersections between path and zone edges.
  *
  * @param graph paths graph to be truncated
  * @param zone zone of interest
