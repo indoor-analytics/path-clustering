@@ -25,8 +25,8 @@ describe ('truncateGraph', () => {
         const graph = pathsToGraph([path]);
         const truncatedGraph = truncateGraph(graph, flandersStation());
 
-        // two path locations are outside zone
-        expect(truncatedGraph.getNodes().filter(node => node.insideZone).length).to.equal(6);
+        // six path locations inside zone + one zone intersection
+        expect(truncatedGraph.getNodes().filter(node => node.insideZone).length).to.equal(6 + 1);
     });
 
     // https://gist.github.com/Alystrasz/fc97417fecd19369fdbaa94908cafd3a
@@ -37,8 +37,8 @@ describe ('truncateGraph', () => {
         const graph = pathsToGraph([path]);
         const truncatedGraph = truncateGraph(graph, flandersStation());
 
-        // four path locations are outside zone
-        expect(truncatedGraph.getNodes().filter(node => node.insideZone).length).to.equal(5);
+        // five path locations inside zone + one intersection
+        expect(truncatedGraph.getNodes().filter(node => node.insideZone).length).to.equal(5 + 1);
     });
 
     // https://gist.github.com/Alystrasz/8cfc1fc58b9cd204911d0d7dea0875a6
@@ -49,8 +49,8 @@ describe ('truncateGraph', () => {
         const graph = pathsToGraph([path]);
         const truncatedGraph = truncateGraph(graph, flandersStation());
 
-        // two path locations are outside zone
-        expect(truncatedGraph.getNodes().filter(node => node.insideZone).length).to.equal(4);
+        // four path locations inside zone + two intersections
+        expect(truncatedGraph.getNodes().filter(node => node.insideZone).length).to.equal(4 + 2);
     });
 
     // https://gist.github.com/Alystrasz/919f978c1f1e98de229660c57659278e
@@ -61,8 +61,8 @@ describe ('truncateGraph', () => {
         const graph = pathsToGraph([path]);
         const truncatedGraph = truncateGraph(graph, flandersStation());
 
-        // four path locations are outside zone
-        expect(truncatedGraph.getNodes().filter(node => node.insideZone).length).to.equal(3);
+        // we expect 3 path locations + 2 intersection locations with zone edge
+        expect(truncatedGraph.getNodes().filter(node => node.insideZone).length).to.equal(5);
     });
 
     // https://gist.github.com/Alystrasz/5e4368441709a8e46ac33dea3c94ffcc
@@ -73,8 +73,8 @@ describe ('truncateGraph', () => {
         const graph = pathsToGraph([path]);
         const truncatedGraph = truncateGraph(graph, flandersStation());
 
-        // six path locations are outside zone
-        expect(truncatedGraph.getNodes().filter(node => node.insideZone).length).to.equal(6);
+        // six path locations inside zone + six intersections
+        expect(truncatedGraph.getNodes().filter(node => node.insideZone).length).to.equal(6 + 6);
     });
 
     it ('should throw if entire graph is outside zone', () => {
@@ -82,15 +82,5 @@ describe ('truncateGraph', () => {
         expect(
             () => truncateGraph(graph, citadel())
         ).to.throw(RangeError, 'All graph nodes are located outside zone of interest.');
-    });
-
-    // https://gist.github.com/Alystrasz/919f978c1f1e98de229660c57659278e
-    it ('should add nodes where path enters/exits zone', () => {
-        const path = runStartingAndEndingOutsideZone();
-        const graph = pathsToGraph([path]);
-        const truncatedGraph = truncateGraph(graph, flandersStation());
-
-        // we expect 3 path locations + 2 intersection locations with zone edge
-        expect(truncatedGraph.getNodes().filter(node => node.insideZone).length).to.equal(5);
     });
 });
